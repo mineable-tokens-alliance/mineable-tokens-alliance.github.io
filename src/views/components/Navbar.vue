@@ -1,6 +1,6 @@
 <template>
   <div data-collapse="small" data-animation="default" data-duration="400" class="navbar w-nav">
-    <div class="bg-gray-100   ">
+    <div class="bg-transparent   ">
     <div class="container w-container">
       <div class="w-full w-clearfix">
         <a href="/" class="brand w-nav-brand w--current">

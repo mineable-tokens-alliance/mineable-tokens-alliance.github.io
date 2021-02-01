@@ -5,7 +5,7 @@
 
 
 
-   <div class="section bg-world px-0 lg:px-1">
+   <div class="section bg-gray-200 px-0 lg:px-1 border-b-2 border-gray-500">
 
      <div class=" ">
        <Navbar />
@@ -14,13 +14,13 @@
 
    </div>
 
-   <div class="section dark autospacing ">
+   <div class="section bg-gray-100 autospacing ">
      <div class="w-container pt-8">
 
        <div class="grid grid-cols-6 grid-flow-col gap-4">
 
-         <div class="col-span-1  ">1</div>
-           <div class="col-span-5  ">    <ZapPanel />   </div>
+         <div class="col-span-1  ">   <VerticalNav v-bind:buttonClickedCallback="verticalNavButtonClicked" /> </div>
+         <div class="col-span-5  ">     </div>
        </div>
 
 
@@ -28,15 +28,12 @@
 
 
 
-
+        <!--
         <div class="text-gray-100 p-8">
-          Since 0xBTC is a pure PoW Mineable Token, providing liquidity to the 0xBTC-ETH trading liquidity pool has special attributes and benefits.  As miners mint new 0xBTC from the contract, it costs a small amount of ETH for gas.
-          <br><br>
-          Naturally, for the miners to continue mining, some will swap 0xBTC back to ETH using a Decentralized Exchange like Uniswap.  By providing liquidity for this pair on Uniswap, you are indirectly earning some of the 0xBTC that is being mined while also helping reduce price slippage for the miners and other traders.
-          <br><br>
-          Farm.mineabletokens is a dapp that makes it very simple to provide liquidity to the 0xBTC-ETH pair on Uniswap to earn interest by accepting those fees.
 
         </div>
+      -->
+
 
      </div>
    </div>
@@ -85,18 +82,23 @@
 <script>
 import Navbar from './components/Navbar.vue';
 import ZapPanel from './components/ZapPanel.vue';
+import VerticalNav from './components/VerticalNav.vue'
 import Footer from './components/Footer.vue';
 
 export default {
   name: 'Home',
   props: [],
-  components: {Navbar,ZapPanel,Footer},
+  components: {Navbar,ZapPanel,VerticalNav,Footer},
   data() {
     return {
 
     }
   },
   methods: {
+    verticalNavButtonClicked(buttonName){
+
+            console.log('verticalNavButtonClicked ', buttonName)
+    }
 
   }
 }
