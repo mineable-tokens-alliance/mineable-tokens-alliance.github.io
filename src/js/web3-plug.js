@@ -2,10 +2,12 @@
 
 /*
 
-  WEB3PLUG.js  --  By InfernalToast 
+  WEB3PLUG.js  --  By InfernalToast
   A mini connector in order to abstract the metamask/web3 API into a custom event emitter that is simpler and more predictable
 
 
+
+ >>> HOW TO USE
 
   let web3Plug = new Web3Plug()
 
@@ -19,9 +21,29 @@
 
       }.bind(this));
 
+   this.web3Plug.getPlugEventEmitter().on('error', function(errormessage) {
+        console.error('error',errormessage);
+
+        //CUSTOM CODE HERE
+        this.web3error = errormessage
+        // END CUSTOM CODE
+      }.bind(this));
 
 
   this.web3Plug.connectWeb3( )
+
+
+  let networkName = this.web3Plug.getWeb3NetworkName(this.activeNetworkId)
+
+  let contractData = this.web3Plug.getContractDataForNetworkID(this.activeNetworkId)
+
+  let myTokenContract = this.web3Plug.getTokenContract(window.web3, contractData['weth'].address)
+
+  myTokenContract.methods.transferFrom( {...} ).send( {from: ....} )
+        .on('receipt', function(){
+            ...
+        });
+
 
 
 */
@@ -35,12 +57,20 @@ const Web3 = require('web3');
 const web3utils = Web3.utils;
 const BigNumber = Web3.utils.BN;
 
-
+const contractData = require('../config/contractdata.json')
 
 const EventEmitter = require('events');
 class Web3PlugEmitter extends EventEmitter {}
 
 const web3PlugEmitter = new Web3PlugEmitter();
+
+
+
+  const mainnetChainID = 1
+  const kovanChainID = 42
+
+
+
 
 export default class Web3Plug {
 
@@ -79,22 +109,13 @@ export default class Web3Plug {
     }
   }
 
-  mainnetChainID()
-  {
-    return 1
-  }
-  kovanChainID()
-  {
-    return 42
-  }
-
   getWeb3NetworkName(networkId){
 
-    if(networkId == this.mainnetChainID()){
+    if(networkId == mainnetChainID){
       return 'mainnet'
     }
 
-    if(networkId == this.kovanChainID()){
+    if(networkId == kovanChainID){
       return 'kovan'
     }
 
@@ -121,7 +142,7 @@ export default class Web3Plug {
   }
 
 
-  async getTokenContract(web3, contractAddress)
+  getTokenContract(web3, contractAddress)
   {
 
     var tokenContract = new web3.eth.Contract(tokenContractABI,contractAddress)
@@ -130,7 +151,7 @@ export default class Web3Plug {
   }
 
 
-  async getCustomContract(web3, contractABI, contractAddress)
+  getCustomContract(web3, contractABI, contractAddress)
   {
 
     var contract = new web3.eth.Contract(contractABI,contractAddress)
