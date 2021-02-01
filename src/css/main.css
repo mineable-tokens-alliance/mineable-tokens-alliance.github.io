@@ -14,7 +14,7 @@
   100% { transform: rotate(360deg); }
 }
 
- 
+
 
 .markdown a
 {
@@ -28,7 +28,14 @@
   float:right;
 }
 
+.brand {
+  font-weight: 900;
+  font-family: sans-serif;
+}
 
+.font-sans {
+    font-family: sans-serif;
+}
 
 .origin-top-right {
   transform-origin: top right;

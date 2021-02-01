@@ -13,8 +13,7 @@ const axios = require('axios')
 
 const Web3 = require('web3');
 const web3utils = Web3.utils;
-//var max_target = web3utils.toBN( 2 ).pow( web3utils.toBN( 234 ) ) ;
-
+ 
 
 var helper = {
 

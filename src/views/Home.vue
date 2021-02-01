@@ -19,8 +19,21 @@
 
        <div class="grid grid-cols-6 grid-flow-col gap-4">
 
-         <div class="col-span-1  ">   <VerticalNav v-bind:buttonClickedCallback="verticalNavButtonClicked" /> </div>
-         <div class="col-span-5  ">     </div>
+         <div class="col-span-1  ">
+           <VerticalNav
+           v-bind:buttonClickedCallback="verticalNavButtonClicked"
+           v-bind:activeSection="activeSection"
+            />
+         </div>
+
+         <div class="col-span-5  ">
+
+           <AppPanel
+             v-bind:activeSection="activeSection"
+             v-bind:web3Plug="web3Plug"
+            />
+
+         </div>
        </div>
 
 
@@ -81,23 +94,31 @@
 
 <script>
 import Navbar from './components/Navbar.vue';
-import ZapPanel from './components/ZapPanel.vue';
+import AppPanel from './components/AppPanel.vue';
 import VerticalNav from './components/VerticalNav.vue'
 import Footer from './components/Footer.vue';
+
+import Web3Plug from '../js/web3-plug.js'
+
+
 
 export default {
   name: 'Home',
   props: [],
-  components: {Navbar,ZapPanel,VerticalNav,Footer},
+  components: {Navbar,AppPanel,VerticalNav,Footer},
   data() {
     return {
-
+      activeSection: 'home',
+      web3Plug: null
     }
+  },
+  created(){
+    this.web3Plug = new Web3Plug()
   },
   methods: {
     verticalNavButtonClicked(buttonName){
-
-            console.log('verticalNavButtonClicked ', buttonName)
+      this.activeSection = buttonName
+      console.log('verticalNavButtonClicked ', buttonName)
     }
 
   }

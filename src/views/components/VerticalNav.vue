@@ -2,7 +2,15 @@
   <div   class="navbar h-nav">
     <div class="    ">
 
-      <div @click="onClick(name)" v-for="name in buttonNames" class=" bg-gray-200 border-2 border-gray-500 hover:bg-green-200 cursor-pointer capitalize text-gray-900 text-center p-2 m-2">  {{name}} </div>
+      <div
+
+      v-for="name in buttonNames"
+      @click="onClick(name)"
+      class="font-sans bg-gray-200 border-2 border-gray-500 hover:bg-gray-800 hover:text-gray-200 cursor-pointer capitalize text-gray-900 text-center p-2 m-2"
+      :class="{'bg-green-500 text-gray-200': (name == activeSection) }"
+      >
+       {{name}}
+     </div>
 
 
     </div>
@@ -14,7 +22,7 @@
 
 export default {
   name: 'VerticalNav',
-  props: ['buttonClickedCallback'],
+  props: ['activeSection','buttonClickedCallback'],
   components: { },
   data() {
     return {
@@ -22,7 +30,7 @@ export default {
     }
   },
   methods: {
-    onClick(buttonName){ 
+    onClick(buttonName){
       this.buttonClickedCallback(buttonName)
     }
   }
