@@ -98,8 +98,7 @@ body {
 
 .bg-world {
   padding-bottom: 0%;
-  background-image: url('../assets/images/0xworld.svg'), url('../assets/images/old_moon_4X.jpg');
-  background-position: 75% 50%, 0px 0px;
+    background-position: 75% 50%, 0px 0px;
   background-size: 650px, 400px;
   background-repeat: no-repeat, repeat;
   background-attachment: scroll, scroll;
@@ -119,7 +118,6 @@ body {
 
 .section.ctas {
   background-color: #393b4a;
-  background-image: url('../assets/images/old_moon_4X.jpg');
   background-position: 0px 0px;
   background-size: 400px;
   background-attachment: scroll;

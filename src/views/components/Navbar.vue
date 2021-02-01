@@ -4,8 +4,8 @@
     <div class="container w-container">
       <div class="w-full w-clearfix">
         <a href="/" class="brand w-nav-brand w--current">
-          ⛏️
-          <div class=" text-block-10">Farm.mineabletokens.com</div>
+             <img src="@/assets/images/logo.png" height="35"  alt="" class="w-6 m-2">
+          <div class=" text-block-10">STEP Finance</div>
        </a>
 
        <div class="hidden lg:inline-block   " style="float:right">
