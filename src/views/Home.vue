@@ -8,13 +8,17 @@
    <div class="section bg-gray-200 px-0 lg:px-1 border-b-2 border-gray-500">
 
      <div class=" ">
-       <Navbar />
+       <Navbar
+       v-bind:web3Plug="web3Plug"
+
+
+        />
      </div>
 
 
    </div>
 
-   <div class="section bg-gray-100 autospacing ">
+   <div class="section bg-gray-100 autospacing mb-16">
      <div class="w-container pt-8">
 
        <div class="grid   md:grid-flow-col   md:grid-cols-6 gap-4">
@@ -26,7 +30,7 @@
             />
          </div>
 
-         <div class="col-span-5  ">
+         <div class="col-span-5 py-2 ">
 
            <AppPanel
              v-bind:activeSection="activeSection"
@@ -121,7 +125,17 @@ export default {
     verticalNavButtonClicked(buttonName){
       this.activeSection = buttonName
       console.log('verticalNavButtonClicked ', buttonName)
-    }
+    },
+/*
+    web3RefreshCallback(activeAccountAddress,activeNetworkId){
+      console.log('web3RefreshCallback',activeAccountAddress,activeNetworkId )
+
+    },
+    web3ErrorCallback(errorMessage){
+        console.log('web3ErrorCallback', errorMessage)
+
+    },*/
+
 
   }
 }

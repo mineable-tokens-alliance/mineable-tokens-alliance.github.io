@@ -6,18 +6,7 @@
             <h3 class="text-xl font-bold inline text-gray-900 text-center flex-grow"> {{getTitle()}} </h3>
 
 
-            <div v-if="connectedToWeb3() == false" @click="connectToWeb3" class="button bg-gray-500 hover:bg-gray-700 text-white font-bold my-2 py-2 px-4 rounded cursor-pointer">Connect to Web3</div>
 
-            <div v-if="connectedToWeb3() "   class="truncate  text-gray-800 p-2" style="max-width:250px;  ">
-
-            <Web3NetButton
-               v-bind:providerNetworkID="activeNetworkId"
-             />
-
-              <span class="  " style="max-width:120px">
-              <a   v-bind:href="getEtherscanBaseURL()+'/address/'+activeAccountAddress" class="text-gray-800  "   target="_blank">  {{activeAccountAddress}} </a>
-             </span>
-             </div>
 
 
       </div>
@@ -117,6 +106,16 @@ export default {
 
     setInterval(this.updateEstimatedEarnings, 100);*/
   },
+  created(){
+
+      this.web3Plug.getPlugEventEmitter().on('stateChanged', function(connectionState) {
+            console.log('stateChanged',connectionState);
+
+            this.activeAccountAddress = connectionState.activeAccountAddress
+            this.activeNetworkId = connectionState.activeNetworkId
+
+          }.bind(this));
+  },
   updated()
   {
 
@@ -128,15 +127,6 @@ export default {
       this.web3Plug.connectWeb3(this.web3RefreshCallback,this.web3ErrorCallback)
     },
 
-    web3RefreshCallback(activeAccountAddress,activeNetworkId){
-      console.log('web3RefreshCallback',activeAccountAddress,activeNetworkId )
-      this.activeAccountAddress=activeAccountAddress;
-      this.activeNetworkId=activeNetworkId;
-    },
-    web3ErrorCallback(errorMessage){
-        console.log('web3ErrorCallback', errorMessage)
-        this.web3Error = errorMessage
-    },
 
     getTitle(){
 

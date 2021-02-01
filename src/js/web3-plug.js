@@ -7,10 +7,18 @@ const BigNumber = Web3.utils.BN;
  var activeNetworkId;
  var activeAccountAddress;
 
+/*
+Change this so it emits events
+*/
+
+const EventEmitter = require('events');
+class Web3PlugEmitter extends EventEmitter {}
+
+const web3PlugEmitter = new Web3PlugEmitter();
 
 export default class Web3Plug {
 
-  async connectWeb3( web3RefreshCallback, web3ErrorCallback ){
+  async connectWeb3(   ){
 
     console.log('connectWeb3')
 
@@ -20,26 +28,38 @@ export default class Web3Plug {
 
          window.ethereum.on('accountsChanged', (accounts) => {
                   activeAccountAddress = window.ethereum.selectedAddress
-                web3RefreshCallback(activeAccountAddress,activeNetworkId)
+                  web3PlugEmitter.emit('stateChanged', this.getConnectionState() )
+
           });
 
          window.ethereum.on('chainChanged', (chainId) => {
                   activeNetworkId = window.ethereum.chainId
-                web3RefreshCallback(activeAccountAddress,activeNetworkId)
+                  web3PlugEmitter.emit('stateChanged', this.getConnectionState() )
+
            });
 
 
 
         activeAccountAddress = window.ethereum.selectedAddress
         activeNetworkId = window.ethereum.chainId
-        web3RefreshCallback(activeAccountAddress,activeNetworkId)
+        web3PlugEmitter.emit('stateChanged', this.getConnectionState() )
 
 
       }else{
-        web3ErrorCallback("No web3 provider found.")
+        web3PlugEmitter.emit('error', "No web3 provider found." )
       }
   }
 
+  getPlugEventEmitter(){
+    return web3PlugEmitter
+  }
+
+  getConnectionState(){
+    return {
+      activeAccountAddress:activeAccountAddress,
+      activeNetworkId:activeNetworkId
+    }
+  }
 
   mainnetChainID()
   {
@@ -49,7 +69,14 @@ export default class Web3Plug {
   {
     return 42
   }
-
+/*
+  getActiveAccountAddress(){
+      return activeAccountAddress
+  }
+  getActiveNetworkId(){
+      return activeNetworkId
+  }
+*/
   getWeb3NetworkName(networkId){
 
     if(networkId == this.mainnetChainID()){

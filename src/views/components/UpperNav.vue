@@ -1,5 +1,5 @@
 <template>
-  <nav role="navigation" class="w-full m-2 p-2 inline-block">
+  <nav role="navigation" class="w-full m-2 p-2 flex flex-row">
     <div class="w-full lg:w-auto block lg:inline-block" v-for="item in navConfig.dropdowns" :key="item.title">
     <t-dropdown  class="w-full" >
       <div
@@ -44,7 +44,27 @@
 
       </div>
     </t-dropdown>
+
+
+
+
   </div>
+
+
+      <div class="inline-block">
+        <div v-if="connectedToWeb3() == false" @click="connectToWeb3" class="button bg-gray-500 hover:bg-gray-700 text-white font-bold my-2 py-2 px-4 rounded cursor-pointer">Connect to Web3</div>
+
+        <div v-if="connectedToWeb3() "   class="truncate  text-gray-800 p-2" style="max-width:250px;  ">
+
+        <Web3NetButton
+           v-bind:providerNetworkID="activeNetworkId"
+         />
+
+          <span class="  " style="max-width:120px">
+          <a   v-bind:href="getEtherscanBaseURL()+'/address/'+activeAccountAddress" class="text-gray-800  "   target="_blank">  {{activeAccountAddress}} </a>
+         </span>
+         </div>
+      </div>
 
 </nav>
 </template>
@@ -52,21 +72,61 @@
 
 <script>
 
+
+import Web3NetButton from './Web3NetButton.vue'
+
 import Config from '../config/UpperNav.js'
 
 export default {
   name: 'UpperNav',
-  props: [],
+  props: ['web3Plug' ],
+  components:{Web3NetButton},
   data() {
     return {
+      activeAccountAddress:null,
+      activeNetworkId: null,
+
       navConfig: null
     }
   },
   created(){
 
     this.navConfig = Config;
+
+
+
+    this.web3Plug.getPlugEventEmitter().on('stateChanged', function(connectionState) {
+          console.log('stateChanged',connectionState);
+
+          this.activeAccountAddress = connectionState.activeAccountAddress
+          this.activeNetworkId = connectionState.activeNetworkId
+
+        }.bind(this));
+
+
   },
   methods: {
+
+          connectedToWeb3(){
+
+            return  this.activeAccountAddress != null
+          },
+
+
+          connectToWeb3(){
+            this.web3Plug.connectWeb3( )
+          },
+
+
+          getEtherscanBaseURL(){
+              if(this.activeNetworkId == 42){
+                return  'https://kovan.etherscan.io'
+              }
+
+              return 'https://etherscan.io'
+          },
+
+
 
   }
 }

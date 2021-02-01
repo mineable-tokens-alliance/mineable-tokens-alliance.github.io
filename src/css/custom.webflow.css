@@ -69,8 +69,8 @@ body {
 }
 
 .section.autospacing {
-  padding-top: 5%;
-  padding-bottom: 5%;
+  padding-top: 0%;
+  padding-bottom: 2%;
 }
 
 .section.autospacing.carousel {
