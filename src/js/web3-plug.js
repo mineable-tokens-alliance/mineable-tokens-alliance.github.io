@@ -1,15 +1,41 @@
 
+
+/*
+
+  WEB3PLUG.js  --  By InfernalToast 
+  A mini connector in order to abstract the metamask/web3 API into a custom event emitter that is simpler and more predictable
+
+
+
+  let web3Plug = new Web3Plug()
+
+  this.web3Plug.getPlugEventEmitter().on('stateChanged', function(connectionState) {
+        console.log('stateChanged',connectionState);
+
+        // CUSTOM CODE HERE
+        this.activeAccountAddress = connectionState.activeAccountAddress
+        this.activeNetworkId = connectionState.activeNetworkId
+        // END CUSTOM CODE
+
+      }.bind(this));
+
+
+
+  this.web3Plug.connectWeb3( )
+
+
+*/
+
+
+
+
+
+
 const Web3 = require('web3');
 const web3utils = Web3.utils;
 const BigNumber = Web3.utils.BN;
 
 
- var activeNetworkId;
- var activeAccountAddress;
-
-/*
-Change this so it emits events
-*/
 
 const EventEmitter = require('events');
 class Web3PlugEmitter extends EventEmitter {}
@@ -27,23 +53,15 @@ export default class Web3Plug {
          window.ethereum.enable();
 
          window.ethereum.on('accountsChanged', (accounts) => {
-                  activeAccountAddress = window.ethereum.selectedAddress
                   web3PlugEmitter.emit('stateChanged', this.getConnectionState() )
-
           });
 
          window.ethereum.on('chainChanged', (chainId) => {
-                  activeNetworkId = window.ethereum.chainId
                   web3PlugEmitter.emit('stateChanged', this.getConnectionState() )
-
            });
 
 
-
-        activeAccountAddress = window.ethereum.selectedAddress
-        activeNetworkId = window.ethereum.chainId
         web3PlugEmitter.emit('stateChanged', this.getConnectionState() )
-
 
       }else{
         web3PlugEmitter.emit('error', "No web3 provider found." )
@@ -56,8 +74,8 @@ export default class Web3Plug {
 
   getConnectionState(){
     return {
-      activeAccountAddress:activeAccountAddress,
-      activeNetworkId:activeNetworkId
+      activeAccountAddress: window.ethereum.selectedAddress,
+      activeNetworkId: window.ethereum.chainId
     }
   }
 
@@ -69,14 +87,7 @@ export default class Web3Plug {
   {
     return 42
   }
-/*
-  getActiveAccountAddress(){
-      return activeAccountAddress
-  }
-  getActiveNetworkId(){
-      return activeNetworkId
-  }
-*/
+
   getWeb3NetworkName(networkId){
 
     if(networkId == this.mainnetChainID()){
@@ -149,7 +160,6 @@ export default class Web3Plug {
 
   rawAmountToFormatted(amount,decimals)
   {
-    console.log('formatting',amount,decimals)
     return (amount * Math.pow(10,-1 * decimals)).toFixed(decimals);
   }
 
