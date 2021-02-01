@@ -1,23 +1,23 @@
 
 <template>
-    <div class="bg-gray-800 p-8">
+    <div class="bg-gray-800 p-2">
 
-      <div>
-      <h3 class="text-lg font-bold inline text-white">Yield Farm: 0xBTC-ETH Pair </h3>
-
-
-
-      <div v-if="connectedToWeb3() == false" @click="connectToWeb3" class="button pull-right bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer">Connect to Web3</div>
-
-      <div v-if="connectedToWeb3() "   class="truncate text-white pull-right" style="max-width:250px;  ">
+      <div  class="bg-gray-200 flex flex-row p-2 ">
+            <h3 class="text-xl font-bold inline text-gray-900 text-center flex-grow"> {{getTitle()}} </h3>
 
 
+            <div v-if="connectedToWeb3() == false" @click="connectToWeb3" class="button bg-gray-500 hover:bg-gray-700 text-white font-bold my-2 py-2 px-4 rounded cursor-pointer">Connect to Web3</div>
 
+            <div v-if="connectedToWeb3() "   class="truncate  text-gray-800 p-2" style="max-width:250px;  ">
 
-        <span class="truncate" style="max-width:120px">
-        <a   v-bind:href="getEtherscanBaseURL()+'/address/'+activeAccountAddress" class="text-green-500  "   target="_blank">  {{activeAccountAddress}} </a>
-       </span>
-       </div>
+            <Web3NetButton
+               v-bind:providerNetworkID="activeNetworkId"
+             />
+
+              <span class="  " style="max-width:120px">
+              <a   v-bind:href="getEtherscanBaseURL()+'/address/'+activeAccountAddress" class="text-gray-800  "   target="_blank">  {{activeAccountAddress}} </a>
+             </span>
+             </div>
 
 
       </div>
@@ -35,7 +35,7 @@
       <div v-if=" connectedToWeb3() " >
 
 
-
+        App goes here
 
 
         <div  class="mb-12">
@@ -74,6 +74,7 @@ const Web3 = require('web3')
 
 var BN = Web3.utils.BN;
 
+import Web3NetButton from './Web3NetButton.vue'
 
 const CryptoAssets = require('../../config/cryptoassets.json')
 
@@ -82,8 +83,8 @@ import Web3Helper from '../../js/web3-helper.js'
 
 export default {
   name: 'AppPanel',
-  props: ['activeSection',"web3Plug"],
-  components:{ },
+  props: ['activeSection','web3Plug'],
+  components:{ Web3NetButton },
   data() {
     return {
       activeAccountAddress: null,
@@ -129,6 +130,16 @@ export default {
     web3ErrorCallback(errorMessage){
         console.log('web3ErrorCallback', errorMessage)
         this.web3Error = errorMessage
+    },
+
+    getTitle(){
+
+      switch(this.activeSection){
+        case 'home': return 'Dashboard';
+
+        default: return '??';
+      }
+
     },
 
 

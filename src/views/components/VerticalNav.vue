@@ -1,6 +1,6 @@
 <template>
   <div   class="navbar h-nav">
-    <div class="    ">
+    <div class=" grid grid-flow-col md:grid-flow-row  ">
 
       <div
 

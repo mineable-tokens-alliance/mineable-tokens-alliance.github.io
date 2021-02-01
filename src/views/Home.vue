@@ -17,9 +17,9 @@
    <div class="section bg-gray-100 autospacing ">
      <div class="w-container pt-8">
 
-       <div class="grid grid-cols-6 grid-flow-col gap-4">
+       <div class="grid   md:grid-flow-col   md:grid-cols-6 gap-4">
 
-         <div class="col-span-1  ">
+         <div class="col-span-5 md:col-span-1  ">
            <VerticalNav
            v-bind:buttonClickedCallback="verticalNavButtonClicked"
            v-bind:activeSection="activeSection"
