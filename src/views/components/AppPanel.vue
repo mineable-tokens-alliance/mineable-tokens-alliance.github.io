@@ -32,13 +32,12 @@
 
 
 
-      <div v-if=" connectedToWeb3() " >
+      <div v-if=" connectedToWeb3() " class="m-2 p-2 text-gray-200" >
 
 
-        App goes here
 
-
-        <div  class="mb-12">
+        <DashboardPanel v-if="activeSection=='home'" />
+        <TradingPanel v-if="activeSection=='trading'" />
 
 
 
@@ -76,15 +75,18 @@ var BN = Web3.utils.BN;
 
 import Web3NetButton from './Web3NetButton.vue'
 
+import DashboardPanel from './subpanels/Dashboard.vue'
+import TradingPanel from './subpanels/Trading.vue'
+
 const CryptoAssets = require('../../config/cryptoassets.json')
 
 
-import Web3Helper from '../../js/web3-helper.js'
+import StepFinanceHelper from '../../js/step-finance-helper.js'
 
 export default {
   name: 'AppPanel',
   props: ['activeSection','web3Plug'],
-  components:{ Web3NetButton },
+  components:{ Web3NetButton,DashboardPanel,TradingPanel  },
   data() {
     return {
       activeAccountAddress: null,
@@ -136,6 +138,9 @@ export default {
 
       switch(this.activeSection){
         case 'home': return 'Dashboard';
+        case 'trading': return 'Trading';
+        case 'staking': return 'Staking';
+        case 'analytics': return 'Analytics';
 
         default: return '??';
       }
