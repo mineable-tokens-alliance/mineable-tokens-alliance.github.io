@@ -2,6 +2,9 @@
 
 <div>
 
+
+
+
    <div class="section bg-world px-0 lg:px-1">
 
      <div class=" ">
@@ -14,7 +17,17 @@
    <div class="section dark autospacing ">
      <div class="w-container pt-8">
 
-        <ZapPanel />
+       <div class="grid grid-cols-6 grid-flow-col gap-4">
+
+         <div class="col-span-1  ">1</div>
+           <div class="col-span-5  ">    <ZapPanel />   </div>
+       </div>
+
+
+
+
+
+
 
         <div class="text-gray-100 p-8">
           Since 0xBTC is a pure PoW Mineable Token, providing liquidity to the 0xBTC-ETH trading liquidity pool has special attributes and benefits.  As miners mint new 0xBTC from the contract, it costs a small amount of ETH for gas.

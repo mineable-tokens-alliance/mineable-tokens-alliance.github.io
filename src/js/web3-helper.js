@@ -4,8 +4,6 @@
 const tokenContractABI = require('../contracts/ERC20ABI.json')
 const uniswapRouterContractABI = require('../contracts/UniswapV2Router.json')
 const uniswapPairContractABI = require('../contracts/UniPairABI.json')
-const uniswapv2addabi = require('../contracts/uniswapv2add.json')
-const uniswapv2removeabi = require('../contracts/uniswapv2remove.json')
 
 const contractData = require('../config/contractdata.json')
 
@@ -104,7 +102,7 @@ var helper = {
 
     return tokenContract;
   },
-  async getZapInContractAddress(web3NetworkName)
+/*  async getZapInContractAddress(web3NetworkName)
   {
 
     var contractAddress = contractData[web3NetworkName].contracts.uniswapv2add.address;
@@ -138,7 +136,7 @@ var helper = {
 
     return contract;
   },
-
+*/
     async getUniswapRouterContract(web3, contractAddress)
     {
 

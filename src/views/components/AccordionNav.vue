@@ -8,7 +8,7 @@
         tag-name="nav"
         :classes="{}"
         :fixed-classes="{}"
-        class="bg-blue-800"
+        class="bg-gray-300"
       >
         <div
           slot="trigger"
@@ -25,11 +25,11 @@
             <div class="flex ml-auto">
               <div class="-ml-2 mr-2 flex items-center lg:hidden">
                 <!-- Mobile menu button -->
-                <div class="flex-shrink-0 flex items-center text-white">
+                <div class="flex-shrink-0 flex items-center text-gray-800">
                     <span class="px-2">{{item.title}}</span>
                 </div>
                 <button
-                  class="inline-flex items-center justify-center p-2 rounded-md text-blue-400 hover:text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 focus:text-white transition duration-150 ease-in-out"
+                  class="inline-flex items-center justify-center p-2 rounded-md text-gray-800 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-600 focus:text-white transition duration-150 ease-in-out"
                   aria-label="Main menu"
                   aria-expanded="false"
                   @mousedown="mousedownHandler"
@@ -69,7 +69,7 @@
             :key="row.title"
             :href="row.url"
             target="_blank"
-            class="block px-3 py-2 my-2 rounded-md text-base font-medium text-white bg-blue-900 hover:bg-blue-500 focus:outline-none focus:text-white focus:bg-blue-700 transition duration-150 ease-in-out">
+            class="block px-3 py-2 my-2 rounded-md text-base font-medium text-gray-900 bg-gray-200 hover:bg-gray-500 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">
             {{row.title}}
           </a>
            </div>

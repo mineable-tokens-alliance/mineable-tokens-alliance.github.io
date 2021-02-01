@@ -14,18 +14,7 @@
   100% { transform: rotate(360deg); }
 }
 
-
-
-.mining-animation{
-    animation: semispin 0.4s linear infinite;
-
-}
-
-@keyframes semispin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(30deg); }
-}
-
+ 
 
 .markdown a
 {
