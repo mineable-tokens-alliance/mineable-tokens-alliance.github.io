@@ -14,6 +14,8 @@ export default {
   props: ['web3Plug'],
   components:{   },
   data() {
+    return {
+    }
   },
   methods: {
   }

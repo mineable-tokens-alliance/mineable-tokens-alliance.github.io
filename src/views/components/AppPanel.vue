@@ -32,15 +32,18 @@
 
 
 
-      <div v-if=" connectedToWeb3() " class="m-2 p-2 text-gray-200" >
+      <div v-if=" connectedToWeb3() " class=" text-gray-200" >
 
+        <StandardMetricsBar />
 
+        <div class="m-2 p-2">
 
         <DashboardPanel v-if="activeSection=='home'" />
         <TradingPanel v-if="activeSection=='trading'" />
 
 
 
+         </div>
 
 
         </div>
@@ -75,6 +78,7 @@ var BN = Web3.utils.BN;
 
 import Web3NetButton from './Web3NetButton.vue'
 
+import StandardMetricsBar from './StandardMetricsBar.vue'
 import DashboardPanel from './subpanels/Dashboard.vue'
 import TradingPanel from './subpanels/Trading.vue'
 
@@ -86,7 +90,7 @@ import StepFinanceHelper from '../../js/step-finance-helper.js'
 export default {
   name: 'AppPanel',
   props: ['activeSection','web3Plug'],
-  components:{ Web3NetButton,DashboardPanel,TradingPanel  },
+  components:{ Web3NetButton,StandardMetricsBar,DashboardPanel,TradingPanel  },
   data() {
     return {
       activeAccountAddress: null,

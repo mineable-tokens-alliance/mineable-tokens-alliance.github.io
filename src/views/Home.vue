@@ -51,7 +51,7 @@
      </div>
    </div>
 
-   <div class="section ctas">
+   <div class="section ctas hidden">
      <div class="autospacing w-container">
        <div class="w-row">
 
@@ -82,7 +82,9 @@
        </div>
      </div>
    </div>
-   <div class="section dark autospacing  ">
+
+
+   <div class="section dark autospacing hidden ">
 
    </div>
 
