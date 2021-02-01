@@ -1,6 +1,7 @@
 
 const Web3 = require('web3');
 const web3utils = Web3.utils;
+const BigNumber = Web3.utils.BN;
 
 
  var activeNetworkId;
@@ -22,7 +23,7 @@ export default class Web3Plug {
                 web3RefreshCallback(activeAccountAddress,activeNetworkId)
           });
 
-        ethereum.on('chainChanged', (chainId) => {
+         window.ethereum.on('chainChanged', (chainId) => {
                   activeNetworkId = window.ethereum.chainId
                 web3RefreshCallback(activeAccountAddress,activeNetworkId)
            });
@@ -80,7 +81,7 @@ export default class Web3Plug {
     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
     return accounts;
   }
- 
+
 
   async getTokenContract(web3, contractAddress)
   {
