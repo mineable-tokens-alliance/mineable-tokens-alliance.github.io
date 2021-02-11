@@ -1,0 +1,30 @@
+{
+    "networks":{
+
+        "xdaistake": [
+            {"name":"DAI", "address":"0x44fA8E6f47987339850636F88629646662444217", "iconpath":"dai.png"}
+
+
+        ],
+        "mainnet": [
+            {"name":"DAI", "address":"", "iconpath":"dai.png"}
+
+
+        ],
+        "kovan": [
+            {"name":"DAI", "address":"", "iconpath":"dai.png"}
+
+
+        ],
+        "polygon": [
+            {"name":"DAI", "address":"", "iconpath":"dai.png"}
+
+
+        ]
+    
+    
+    }
+
+
+
+}

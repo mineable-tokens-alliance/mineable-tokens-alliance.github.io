@@ -1,0 +1,30 @@
+{
+    "networks":{
+
+        "xdaistake": {
+            "networkId": 100
+
+
+        },
+        "mainnnet": {
+            "networkId": 1
+
+
+        },
+        "kovan": {
+            "networkId": 42
+
+
+        },
+        "polygon": {
+            "networkId": 137
+
+
+        }
+    
+    
+    }
+
+
+
+}
