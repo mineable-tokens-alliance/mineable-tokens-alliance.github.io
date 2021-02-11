@@ -4,11 +4,11 @@
   <div class="mt-1 relative rounded-md shadow-sm">
     
     <input type="text" name="price" id="price" class="text-gray-900 font-bold text-xl focus:ring-indigo-500 focus:border-indigo-500 block w-full py-4 pl-7 pr-12   border-gray-300 rounded-md" placeholder="0.00">
-    <div class="absolute inset-y-0 right-0 flex items-center my-2 mr-2 bg-black rounded">
+    <div class="absolute inset-y-0 right-0 flex items-center my-2 mr-2 bg-black rounded select-none">
       <label for="currency" class="hidden sr-only">Currency</label>
 
 
-      <div class="bg-white text-black font-bold rounded px-2 mx-2"> MAX </div> 
+      <div @click="clickedMax" class="bg-white text-black font-bold hover:bg-gray-300 rounded px-2 mx-2 cursor-pointer"> MAX </div> 
 
       <img v-bind:src="getTokenIcon()" width="16px" class="mx-2" /> 
 
@@ -63,6 +63,9 @@ export default {
     },
     getTokenIcon(){
       return this.selectedTokenData.imgurl
+    },
+    clickedMax(){
+      console.log('clicked max')
     }
 
 
