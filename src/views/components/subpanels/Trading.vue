@@ -6,11 +6,18 @@
   <hr class="font-bold"> 
 
 
-  <div class="bg-black p-2 m-4">
+  <div class="bg-black p-2 m-4 font-sans">
 
-      <div class="  border-2 border-gray-500 m-6 p-6 text-center">
-      I have
-      <div>   <TokenAmountInput />  </div> 
+      <div class="  border-0 border-gray-500 m-6 p-2 ">
+        <div class="w-3/4" style="margin:0 auto">
+           
+          <div>   <TokenAmountInput   
+                  labeltext="Select Coin to Deposit"
+          
+                               />  
+          </div> 
+
+          </div>
       </div>
 
 
