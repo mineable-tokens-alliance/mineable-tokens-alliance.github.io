@@ -10,7 +10,7 @@
 
       <div class="  border-2 border-gray-500 m-6 p-6 text-center">
       I have
-      <div> --- </div> 
+      <div>   <TokenAmountInput />  </div> 
       </div>
 
 
@@ -47,10 +47,12 @@
 
 const Web3 = require('web3')
 
+import TokenAmountInput from '../subcomponents/TokenAmountInput'
+
 export default {
   name: 'Trading',
   props: ['web3Plug'],
-  components:{   },
+  components:{  TokenAmountInput },
   data() {
     return {
     }
