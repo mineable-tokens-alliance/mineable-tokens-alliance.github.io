@@ -2,13 +2,13 @@
     "networks":{
 
         "xdaistake": [
-            {"name":"DAI", "address":"0x44fA8E6f47987339850636F88629646662444217", "iconpath":"dai.png"}
-
+            {"name":"DAI", "address":"0x44fA8E6f47987339850636F88629646662444217", "imgurl":"/assets/images/tokens/dai.png"},
+            {"name":"USDC", "address":"", "imgurl":"/assets/images/tokens/usdc.png"}
 
         ],
         "mainnet": [
-            {"name":"DAI", "address":"", "iconpath":"dai.png"}
-
+            {"name":"DAI", "address":"", "imgurl":"/assets/images/tokens/dai.png"},
+            {"name":"USDC", "address":"", "imgurl":"/assets/images/tokens/usdc.png"}
 
         ],
         "kovan": [

@@ -28,7 +28,7 @@
         <div class="m-2 p-2">
 
         <DashboardPanel v-if="activeSection=='home'" />
-        <TradingPanel v-if="activeSection=='trading'" />
+        <TradingPanel v-if="activeSection=='trading'" v-bind:web3Plug="web3Plug" />
 
 
 

@@ -109,7 +109,7 @@ export default class Web3Plug {
     }
   }
 
-  getWeb3NetworkName(networkId){
+  static getWeb3NetworkName(networkId){
 
     if(networkId == mainnetChainID){
       return 'mainnet'

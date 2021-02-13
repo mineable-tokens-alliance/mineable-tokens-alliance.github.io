@@ -11,9 +11,11 @@
       <div class="  border-0 border-gray-500 m-6 p-2 ">
         <div class="w-3/4" style="margin:0 auto">
            
-          <div>   <TokenAmountInput   
+          <div>   <TokenAmountInput 
+                  v-bind:web3Plug="web3Plug"  
                   labeltext="Select Coin to Deposit"
-          
+                  disableInput=false
+
                                />  
           </div> 
 
@@ -21,9 +23,18 @@
       </div>
 
 
-      <div class="  border-2 border-gray-500 m-6 p-6 text-center">
-      I want
-      <div> --- </div> 
+       <div class="  border-0 border-gray-500 m-6 p-2 ">
+        <div class="w-3/4" style="margin:0 auto">
+           
+          <div>   <TokenAmountInput 
+                  v-bind:web3Plug="web3Plug"  
+                  labeltext="Select Coin to Swap Into" 
+                  disableInput=true
+
+                               />  
+          </div> 
+
+          </div>
       </div>
 
 
