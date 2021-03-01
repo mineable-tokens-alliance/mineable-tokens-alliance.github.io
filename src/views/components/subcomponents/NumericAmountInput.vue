@@ -3,7 +3,7 @@
   <label for="price" class="block text-md font-bold font-medium text-gray-500 text-center">{{labeltext}}</label>
   <div class="mt-1 relative rounded-md shadow-sm">
     
-    <input type="text" name="price" v-bind:value="currentAmount" :disabled="disableInput == 'true'" class="text-gray-900 font-bold text-xl focus:ring-indigo-500 focus:border-indigo-500 block w-full py-4 pl-7 pr-12   border-gray-300 rounded-md" placeholder="0.00">
+    <input type="text" name="price" v-bind:value="inputAmount" v-on:change="handleInputAmountChanged" :disabled="disableInput == 'true'" class="text-gray-900 font-bold text-xl focus:ring-indigo-500 focus:border-indigo-500 block w-full py-4 pl-7 pr-12   border-gray-300 rounded-md" placeholder="0.00">
    
    
    
@@ -11,8 +11,7 @@
       <label for="currency" class="hidden sr-only">Currency</label>
 
 
-      <div @click="clickedMax" v-if="disableInput == 'false'" class="bg-white text-black font-bold hover:bg-gray-300 rounded px-2 mx-2 cursor-pointer"> MAX </div> 
-
+       
      
 
        <t-dropdown class="select-none" ref="optionDropdown">
@@ -94,11 +93,11 @@
 
 export default {
   name: 'NumericAmountInput',
-  props: [ 'web3Plug', 'labeltext', 'disableInput', 'selectionOptions' ],
+  props: [ 'web3Plug', 'labeltext', 'inputAmount', 'disableInput', 'selectionOptions', 'onSelectCallback', 'onAmountChangedCallback' ],
   components: { },
   data() {
     return {
-      currentAmount: 0,
+     // currentAmount: 0,
       selectedOption: null,
       networkName: 'mainnet'
     }
@@ -120,7 +119,17 @@ export default {
     },
     selectOption(opt){
      console.log('selected opt')
-    } 
+
+     this.selectedOption = opt;
+     this.onSelectCallback(opt)
+
+    },
+     handleInputAmountChanged(event){
+      let newValue = event.target.value
+      console.log('handleInputAmountChanged ',newValue)
+
+      this.onAmountChangedCallback(newValue)
+    },
     
 
   }

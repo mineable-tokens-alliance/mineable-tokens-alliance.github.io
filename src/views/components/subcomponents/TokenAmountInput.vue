@@ -3,7 +3,7 @@
   <label for="price" class="block text-md font-medium font-bold text-gray-500 text-center">{{labeltext}}</label>
   <div class="mt-1 relative rounded-md shadow-sm">
     
-    <input type="text" name="price" id="price" :disabled="disableInput == 'true'" class="text-gray-900 font-bold text-xl focus:ring-indigo-500 focus:border-indigo-500 block w-full py-4 pl-7 pr-12   border-gray-300 rounded-md" placeholder="0.00">
+    <input type="text" name="price" v-bind:value="inputAmount" v-on:change="handleInputAmountChanged" :disabled="disableInput == 'true'" class="text-gray-900 font-bold text-xl focus:ring-indigo-500 focus:border-indigo-500 block w-full py-4 pl-7 pr-12   border-gray-300 rounded-md" placeholder="0.00">
    
    
    
@@ -97,7 +97,7 @@
 
 export default {
   name: 'TokenAmountInput',
-  props: [ 'web3Plug', 'labeltext', 'disableInput' ],
+  props: [ 'web3Plug', 'labeltext', 'disableInput' , 'inputAmount', 'onSelectCallback', 'onAmountChangedCallback'],
   components: { },
   data() {
     return {
@@ -114,6 +114,11 @@ export default {
     this.networkName = Web3Plug.getWeb3NetworkName(networkId)
     this.tokenList = tokenlist.networks[this.networkName]
     this.selectedTokenData = this.tokenList[0]
+
+   
+  },
+  mounted(){
+     this.handleSelectedTokenChanged(this.selectedTokenData)
   },
   methods: {
     onChange(event, hideMethod) {        
@@ -134,6 +139,14 @@ export default {
     handleSelectedTokenChanged(tokenData){
       this.selectedTokenData = tokenData
       console.log('selected token changed', tokenData)
+
+      this.onSelectCallback(tokenData)
+    },
+    handleInputAmountChanged(event){
+      let newValue = event.target.value
+      console.log('handleInputAmountChanged ',newValue)
+
+      this.onAmountChangedCallback(newValue)
     },
     getTokenIcon(){
       return this.selectedTokenData.imgurl
