@@ -1,9 +1,9 @@
 <template> 
 <div>
-  <label for="price" class="block text-md font-medium font-bold text-gray-500 text-center">{{labeltext}}</label>
+  <label for="price" class="block text-md font-bold font-medium text-gray-500 text-center">{{labeltext}}</label>
   <div class="mt-1 relative rounded-md shadow-sm">
     
-    <input type="text" name="price" id="price" :disabled="disableInput == 'true'" class="text-gray-900 font-bold text-xl focus:ring-indigo-500 focus:border-indigo-500 block w-full py-4 pl-7 pr-12   border-gray-300 rounded-md" placeholder="0.00">
+    <input type="text" name="price" v-bind:value="currentAmount" :disabled="disableInput == 'true'" class="text-gray-900 font-bold text-xl focus:ring-indigo-500 focus:border-indigo-500 block w-full py-4 pl-7 pr-12   border-gray-300 rounded-md" placeholder="0.00">
    
    
    
@@ -15,7 +15,7 @@
 
      
 
-       <t-dropdown class="select-none" ref="tokenDropdown">
+       <t-dropdown class="select-none" ref="optionDropdown">
           <div
             slot="trigger"
             slot-scope="{
@@ -28,7 +28,7 @@
           >
             <button
               id="user-menu"
-              class="flex items-center pr-3   text-gray-100 transition duration-150 ease-in-out bg-transparent border-2 border-gray-200   focus:outline-none focus:shadow-solid"
+              class="flex items-center px-3   text-gray-100 transition duration-150 ease-in-out bg-transparent border-2 border-gray-200   focus:outline-none focus:shadow-solid"
               :class="{ 'border-gray-300 bg-gray-500 text-white ': isShown }"
               aria-label="User menu"
               aria-haspopup="true"
@@ -37,9 +37,9 @@
               @blur="blurHandler"
               @keydown="keydownHandler"
             >
-              <img class="  mx-2" v-bind:src="getTokenIcon()" width="16px"  alt="">
+               
 
-              {{selectedTokenData.name}}   
+              {{selectedOption}}
 
               <span>
               <svg class="svg-icon mx-2" viewBox="0 0 20 20" style="stroke: #aaaaaa;">
@@ -50,18 +50,18 @@
             </button>
           </div>
 
-          <div slot-scope="{ hide, blurHandler }" ref="tokenSelect" class="border-2 border-white"> 
+          <div slot-scope="{ hide, blurHandler }" ref="optionSelect" class="border-2 border-white"> 
             <button 
                 @click="  onChange($event, hide); "
-               v-for="token in tokenList"
+               v-for="selectOption in selectionOptions"
               class="block w-full px-4 py-2 text-sm leading-5 text-gray-100 transition duration-150 ease-in-out bg-black hover:bg-gray-800 focus:outline-none focus:bg-gray-100"
               role="menuitem"
               @blur="blurHandler"
-              v-bind:value="token.name"
+              v-bind:value="selectOption"
             > 
-             <img class="  mx-2" v-bind:src="token.imgurl" width="16px"  alt="">
+              
 
-              {{token.name}}   
+              {{ selectOption }}   
               
             </button>
             
@@ -71,8 +71,8 @@
         </t-dropdown>
 
       
-      <select @change="onChange($event)" id="currency" name="currency" class=" hidden focus:ring-indigo-500 focus:border-indigo-500 border-0 h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-gray-100   rounded-md">
-        <option v-for="token in tokenList" class="bg-black text-white" >  {{token.name}} </option>
+      <select @change="onChange($event)"  name="currency" class=" hidden focus:ring-indigo-500 focus:border-indigo-500 border-0 h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-gray-100   rounded-md">
+        <option v-for="selectOption in selectionOptions" class="bg-black text-white" >  {{ selectOption }} </option>
        
       </select>
 
@@ -83,65 +83,45 @@
 
 
   </div>
-    <div class="text-xs p-2">
-   Balance: {{currentBalance}}
-  </div>
+     
 </div>
 </template> 
 
 
 <script>
- 
- const tokenlist = require('../../../../shared/tokenlist.json')
+  
  import Web3Plug from '../../../js/web3-plug.js' 
 
 export default {
-  name: 'TokenAmountInput',
-  props: [ 'web3Plug', 'labeltext', 'disableInput' ],
+  name: 'NumericAmountInput',
+  props: [ 'web3Plug', 'labeltext', 'disableInput', 'selectionOptions' ],
   components: { },
   data() {
     return {
-      currentBalance: "0.0",
-      tokenList: [],
-      selectedTokenData: {},
+      currentAmount: 0,
+      selectedOption: null,
       networkName: 'mainnet'
     }
   },
   created(){
-    console.log('meep',this.disableInput )
+    
 
     let networkId = this.web3Plug.getConnectionState().activeNetworkId
     this.networkName = Web3Plug.getWeb3NetworkName(networkId)
-    this.tokenList = tokenlist.networks[this.networkName]
-    this.selectedTokenData = this.tokenList[0]
+    
+    this.selectedOption = this.selectionOptions[0]
   },
   methods: {
     onChange(event, hideMethod) {        
         
          hideMethod() 
 
-        this.selectTokenByName(event.target.value)
+         this.selectOption(event.target.value)
     },
-    selectTokenByName(tokenName){
-      for(let tokenData of this.tokenList){
-        if(tokenData.name == (tokenName)){
-          
-          this.handleSelectedTokenChanged(tokenData)
-          return
-        }
-      }
-    },
-    handleSelectedTokenChanged(tokenData){
-      this.selectedTokenData = tokenData
-      console.log('selected token changed', tokenData)
-    },
-    getTokenIcon(){
-      return this.selectedTokenData.imgurl
-    },
-    clickedMax(){
-      console.log('clicked max')
-    }
-
+    selectOption(opt){
+     console.log('selected opt')
+    } 
+    
 
   }
 }
