@@ -6,8 +6,8 @@
 
         <div class="flex-grow">
           <a href="/" class="brand w-nav-brand w--current">
-               <img src="@/assets/images/logo.png" height="35"  alt="" class="w-6 m-2">
-            <div class=" inline-block text-xl text-gray-900">STEP Finance</div>
+               <img src="@/assets/images/pick.png" height="35"  alt="" class="w-6 m-2">
+            <div class=" inline-block text-xl text-gray-900">Mineable Tokens Alliance</div>
          </a>
        </div>
 

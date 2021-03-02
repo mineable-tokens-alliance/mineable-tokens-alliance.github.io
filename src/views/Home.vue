@@ -24,18 +24,13 @@
        <div class="grid   md:grid-flow-col   md:grid-cols-6 gap-4">
 
          <div class="col-span-5 md:col-span-1  ">
-           <VerticalNav
-           v-bind:buttonClickedCallback="verticalNavButtonClicked"
-           v-bind:activeSection="activeSection"
-            />
+                    Mineable Tokens Alliance
+                    
          </div>
 
          <div class="col-span-5 py-2 ">
 
-           <AppPanel
-             v-bind:activeSection="activeSection"
-             v-bind:web3Plug="web3Plug"
-            />
+
 
          </div>
        </div>
@@ -45,17 +40,13 @@
 
 
 
-        <!--
-        <div class="text-gray-100 p-8">
 
-        </div>
-      -->
 
 
      </div>
    </div>
 
-   <div class="section ctas hidden">
+   <div class="section ctas  ">
      <div class="autospacing w-container">
        <div class="w-row">
 
@@ -65,22 +56,16 @@
 
 
 
-            <h2 class="text-yellow-500"> 0xBTC-ETH Pair </h2>
+            <span class="text-yellow-500 text-md"> Neutral, True, and Immortal </span>
+            <br>
+          
+            <a class="text-white-500 text-xs text-white" href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-918.md"> Pure Mined EIP918 Tokens </a>
 
-            <a href="https://0xbtc.info/" target="_blank" class='text-gray-200'>
-                 -> 0xBTC Mining Stats
-                </a>
-                <br>
-
-           <a href="https://info.uniswap.org/pair/0xc12c4c3e0008b838f75189bfb39283467cf6e5b3" target="_blank" class='text-gray-200'>
-                -> Uni Pool Statistics
-
-               </a>
 
 
 
          </div>
-         <div class="column-2 w-col w-col-6"><img src="@/assets/images/coins.svg" width="125" height="125" alt="">
+         <div class="column-2 w-col w-col-6"><img src="@/assets/images/MineableTokensAlliance.png" width="125" height="125" alt="">
 
          </div>
        </div>
